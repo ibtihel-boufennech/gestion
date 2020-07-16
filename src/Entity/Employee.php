@@ -52,9 +52,7 @@ class Employee
      */
     private $salaire;
 
-    /**
-     * @ORM\Column(type="bigint")
-     */
+
     
 
     public function getId(): ?int
