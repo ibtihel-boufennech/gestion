@@ -1,7 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Log in!{% endblock %}
+{% block title %}login{% endblock %}
 
+{% block stylesheets %}
+  
+  form{
+    max-width:60%;
+    margin: 1% auto;
+  }
+{% endblock %}
 {% block body %}
 <form method="post">
     {% if error %}
@@ -24,15 +31,15 @@
            value="{{ csrf_token('authenticate') }}"
     >
 
-    
-       
+
+
         <div class="checkbox mb-3">
             <label>
                 <input type="checkbox" name="_remember_me"> Rappeler de moi
             </label>
         </div>
         <a href="{{path('register')}}">Créer un Compte</a>
-    
+
 
     <button class="btn btn-lg btn-primary" type="submit">
         Se connecter

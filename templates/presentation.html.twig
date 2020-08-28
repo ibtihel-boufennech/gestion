@@ -1,0 +1,44 @@
+{% extends "base.html.twig"%}
+{% block stylesheets %}
+  #container{
+    max-width:90%;
+    margin-left:3%;
+  }
+
+{% endblock %}
+{% block body%}
+<br>
+<br>
+<img src="{{asset('images/banner.jpg')}} " width="100%" >
+<br>
+<br>
+<div id="container">
+  <br>
+  <br>
+<h2 align=center>QUI SOMME-<SPAN style="color:red;">NOUS?</SPAN></h2>
+<br>
+<br>
+<p align=center><a href="https://www.dsinternational.tn">DS-International</a> est une société de service présente en Tunisie depuis 2010 et compte aujourd’hui 72 collaborateurs sur le site de SOUSSE.<br>
+
+Notre société intervient dans le domaine du Marketing, Etudes, Consulting.<br>
+
+Nous disposons de compétences dans les domaines de l’Infographie, l’Ingénierie, Informatiques, Finances, Logistique, Sourcing et Commerciaux.<br>
+
+Grâce aux efforts de ses équipes l’entreprise se place aujourd’hui parmi les acteurs majeurs de son domaine et opère principalement sur le marché Français et Belge.<br>
+</p>
+<br>
+<br>
+<img src="{{asset('images/dsi.jpg')}}" width="80%" height="20%">
+<br>
+<br>
+<p align=center>
+  <a href="https://www.detandt.com">Detandt-Simon</a> est active depuis 1988 dans le domaine de l’évacuation des fumées.<br>
+
+Depuis plusieurs années leader incontesté sur ce secteur, elle distribue ses produits aux marchés domestiques, professionnels et industriels..<br>
+
+Aujourd’hui Detandt-Simon est spécialisé dans 5 grands types de produits :<br>
+
+La Cheminée/ La Ventilation/ L'accumulateur thermique/ Traitement de l'eau.
+</p>
+</div>
+{% endblock %}

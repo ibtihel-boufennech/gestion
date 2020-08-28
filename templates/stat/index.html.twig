@@ -1,6 +1,20 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+  .epuise{
+    background-color:#ff0000;
+  }
+  .presfin{
 
+    background-color:#ffa500;
+  }
+  .suffisant{
+    background-color:#90ee90 ;
+  }
+  .link{
+    font-size:14px
+  }
+{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +23,39 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+  <table class="table">
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/home/bodjo/workplace/gestion/src/Controller/StatController.php'|file_link(0) }}">src/Controller/StatController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/home/bodjo/workplace/gestion/templates/stat/index.html.twig'|file_link(0) }}">templates/stat/index.html.twig</a></code></li>
-    </ul>
+    <thead>
+      <th class="epuise">Produits épuisés</th>
+      <th class="presfin">Produits prés Fin</th>
+      <th class="suffisant">Produits avec quantité suffisantes</th>
+    </thead>
+    {% for i in length     %}
+
+
+        <tr>
+          <td class="epuise" align=center>
+
+            {% if produits_epuise[(loop.index)-1] is defined%}
+
+              {{produits_epuise[(loop.index)-1].nom }}  |  {{ produits_epuise[(loop.index)-1].quantite}}
+
+            {% endif %}
+          </td>
+          <td class="presfin" align=center>
+            {% if produits_pres_fin[(loop.index-1)] is defined%}
+              {{produits_pres_fin[(loop.index-1)].nom}}  |  {{ produits_pres_fin[(loop.index-1)].quantite }}
+            {% endif %}
+          </td>
+          <td class="suffisant" align=center>
+            {% if produits_suffisant[(loop.index-1)] is defined%}
+              {{produits_suffisant[(loop.index-1)].nom }} |  {{ produits_suffisant[(loop.index-1)].quantite }}
+            {% endif %}
+          </td>
+        </tr>
+    {% endfor %}
+  </table>
+  <a href="#" class=link>Ajouter au Rapport</a>|
+  <a href="#"class=link>Finaliser le Rapport</a>
 </div>
 {% endblock %}

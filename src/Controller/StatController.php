@@ -7,24 +7,47 @@ use Symfony\Component\Routing\Annotation\Route;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use App\Entity\Produit;
+use App\Repository\ProduitRepository;
 
 class StatController extends AbstractController
 {
     /**
      * @Route("/stat", name="stat")
      */
-    public function index(Request $request)
+    public function index(Request $request,ProduitRepository $produitrepository)
     {
-      $stat = new PieChart();
-        $form = $this->createForm(StatType::class, $stat);
-        $form->handleRequest($request);
+        $produits_epuise = array();
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $produits_pres_fin = array();
+        $produits_suffisant = array();
+        $produits = $produitrepository->findAll();
+        foreach ($produits as $produit) {
+          if($produit->getQuantite()==0){
 
-
-            return $this->redirectToRoute('generate_stat');
+            array_push($produits_epuise,$produit);
+          }
+          elseif ($produit->getQuantite()<100) {
+            array_push($produits_pres_fin,$produit);
+          }else {
+            array_push($produits_suffisant,$produit);
+          }
+          if(sizeof($produits_epuise)>sizeof($produits_pres_fin)and sizeof($produits_epuise)>sizeof($produits_suffisant)){
+            $length=$produits_epuise;
+          }elseif (sizeof($produits_pres_fin)>sizeof($produits_epuise)and sizeof($produits_pres_fin)>sizeof($produits_suffisant)) {
+            $length=$produits_pres_fin;
+          }else {
+            $length=$produits_suffisant;
+          }
         }
-        return $this->render('stat/indexhtmltwig');
+
+
+        return $this->render('stat/index.html.twig',[
+          'produits_epuise'=>$produits_epuise,
+          'produits_pres_fin'=>$produits_pres_fin,
+          'produits_suffisant'=>$produits_suffisant,
+          'length'=>$length,
+        ]);
     }
     /**
      * @Route("/stat/current", name="_generate_stat")

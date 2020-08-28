@@ -1,4 +1,65 @@
 {% extends "base.html.twig"%}
+{% block title %}s'enregister{% endblock %}
+
+{% block stylesheets%}
+  .input_cl{
+    display : block;
+    width : 90%;
+  }
+  .form-group{
+    margin : 1% auto;
+    max-width : 60%;
+  }
+{% endblock %}
+
 {% block body%}
-{{form(form)}}
-{% endblock%}
+{# {{form(form)}} #}
+{{form_start(form)}}
+    <div class="alert alert-dange">
+            {{ form_errors(form) }}
+    </div>
+
+       <div class="form-group">
+           {{form_label(form.username, 'username', {'label_attr': {'class': 'label_cl'}})}}
+           {{ form_widget(form.username, {'attr': {'class': 'input_cl'}}) }}
+
+       </div>
+       <div class="form-group" id="some-custom-id">
+         {{form_label(form.roles, 'roles', {'label_attr': {'class': 'label_cl'}})}}
+         {{ form_widget(form.roles, {'attr': {'class': 'input_cl'}}) }}
+       </div>
+
+
+       <div class="form-group">
+         {{form_label(form.nom, 'nom', {'label_attr': {'class': 'label_cl'}})}}
+         {{ form_widget(form.nom, {'attr': {'class': 'input_cl'}}) }}
+       </div>
+       <div class="form-group" id="some-custom-id">
+         {{form_label(form.prenom, 'prenom', {'label_attr': {'class': 'label_cl'}})}}
+         {{ form_widget(form.prenom, {'attr': {'class': 'input_cl'}}) }}
+       </div>
+
+
+      <div class="form-group">
+        {{form_label(form.password, 'password', {'label_attr': {'class': 'label_cl'}})}}
+        {{ form_widget(form.password, {'attr': {'class': 'input_cl'}}) }}
+      </div>
+      <div class="form-group" id="some-custom-id">
+        {{form_label(form.email, 'email', {'label_attr': {'class': 'label_cl'}})}}
+        {{ form_widget(form.email, {'attr': {'class': 'input_cl'}}) }}
+      </div>
+
+         <div class="form-group">
+           {{form_label(form.telephone, 'telephone', {'label_attr': {'class': 'label_cl'}})}}
+           {{ form_widget(form.telephone, {'attr': {'class': 'input_cl'}}) }}
+         </div>
+         <div class="form-group" id="some-custom-id">
+           {{form_label(form.adresse, 'adresse', {'label_attr': {'class': 'label_cl'}})}}
+           {{ form_widget(form.adresse, {'attr': {'class': 'input_cl'}}) }}
+         </div>
+
+
+{{form_end(form)}}
+
+<a href="{{path('app_login')}}" >Deja Inscrit?</a>
+{% endblock %}

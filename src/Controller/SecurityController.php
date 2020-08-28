@@ -67,9 +67,15 @@ class SecurityController extends AbstractController
             $entitymanager->flush();
             return $this->render("index.html.twig",["sucess"=>"utilisateur enregisté avec succes"]);
 
-            
+
         }
         return $this->render("security/signup.html.twig",["form"=>$form->createView()]);
     }
-   
+    /**
+     * @Route("/presentation", name="presentation")
+     */
+   public function presentation()
+   {
+     return $this->render("presentation.html.twig");
+   }
 }
