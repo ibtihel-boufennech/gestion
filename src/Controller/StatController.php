@@ -5,6 +5,9 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+
 class StatController extends AbstractController
 {
     /**
@@ -12,7 +15,7 @@ class StatController extends AbstractController
      */
     public function index(Request $request)
     {
-      $stat = new Stat();
+      $stat = new PieChart();
         $form = $this->createForm(StatType::class, $stat);
         $form->handleRequest($request);
 
@@ -28,16 +31,28 @@ class StatController extends AbstractController
      */
     public function generate(Stat $stat)
     {
-      $qte_total =
-      $produits_epuises=
-      $produit_pre_epuises=
-      $produit_suffisants=
-      return $this->render('stat/generated.htmltwig', [
-                                                      'qte_tolal' => $qte_total,
-                                                      'produit_epuises' => $produits_epuises,
-                                                      '$produit_pre_epuises' => $produit_pre_epuises,
-                                                      'trader_ht_dcperiod' => $produit_suffisants
-                                                    ]);
+      $pieChart = new PieChart();
+    $pieChart->getData()->setArrayToDataTable(
+        [['Task', 'Hours per Day'],
+         ['Work',     11],
+         ['Eat',      2],
+         ['Commute',  2],
+         ['Watch TV', 2],
+         ['Sleep',    7]
+        ]
+    );
+    $pieChart->getOptions()->setTitle('My Daily Activities');
+    $pieChart->getOptions()->setHeight(500);
+    $pieChart->getOptions()->setWidth(900);
+    $pieChart->getOptions()->getTitleTextStyle()->setBold(true);
+    $pieChart->getOptions()->getTitleTextStyle()->setColor('#009900');
+    $pieChart->getOptions()->getTitleTextStyle()->setItalic(true);
+    $pieChart->getOptions()->getTitleTextStyle()->setFontName('Arial');
+    $pieChart->getOptions()->getTitleTextStyle()->setFontSize(20);
+
+    return $this->render('stat/generated.htmltwi', array('piechart' => $pieChart));
+
+
   }
-    }
+
 }
