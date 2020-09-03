@@ -1,0 +1,30 @@
+{% extends "base.html.twig"%}
+{% block stylesheets %}
+
+{% endblock %}
+{% block body%}
+<table class="table">
+  <thead>
+    <th>nom</th>
+    <th>prenom</th>
+    <th>post</th>
+    <th>adresse</th>
+    <th>email</th>
+    <th>telephone</th>
+    <th>salaire</th>
+  </thead>
+    <tbody>
+  {% for employee in employees %}
+    <tr>
+      <td>{{employee.nom}}</td>
+      <td>{{employee.prenom}}</td>
+      <td>{{employee.post}}</td>
+      <td>{{employee.adresse}}</td>
+      <td>{{employee.email}}</td>
+      <td>{{employee.telephone}}</td>
+      <td>{{employee.salaire}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

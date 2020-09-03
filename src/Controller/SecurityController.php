@@ -10,17 +10,22 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
 use App\Form\UserType;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class SecurityController extends AbstractController
 {
+  public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+  {
+    $this->passwordEncoder = $passwordEncoder;
+  }
     /**
      * @Route("/login", name="app_login")
      */
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        if ($this->getUser()) {
+            return $this->redirectToRoute('index');
+        }else{
 
         // get the login error if there is one
         $error = $authenticationUtils->getLastAuthenticationError();
@@ -28,7 +33,7 @@ class SecurityController extends AbstractController
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
-    }
+    }}
 
     /**
      * @Route("/logout", name="app_logout")
@@ -44,7 +49,10 @@ class SecurityController extends AbstractController
     public function index(AuthenticationUtils $authenticationUtils): Response
     {
         if ($this->getUser()) {
-            return $this->render('index.html.twig');
+
+            return $this->render('index.html.twig',[
+              'user'=>$this->getUser(),
+            ]);
         }else{
             // get the login error if there is one
             $error = $authenticationUtils->getLastAuthenticationError();
@@ -63,6 +71,10 @@ class SecurityController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted()&&$form->isValid()){
             $entitymanager=$this->getDoctrine()->getManager();
+            $user->setPassword($this->passwordEncoder->encodePassword(
+                 $user,
+                $user->getPassword()
+            ));
             $entitymanager->persist($user);
             $entitymanager->flush();
             return $this->render("index.html.twig",["sucess"=>"utilisateur enregisté avec succes"]);

@@ -44,8 +44,8 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
+      {% if is_granted('ROLE_TECH')%}
 
-      {%if is_granted('ROLE_TECH')%}
       <li class="nav-item active">
         <a class="nav-link" href="{{path('index')}}">Accueil <span class="sr-only">(current)</span></a>
       </li>
@@ -58,7 +58,7 @@
       <li class="nav-item">
       	<a  class="nav-link" href="{{path('app_logout')}}">Déconnecter</a>
       </li>
-      {%elseif is_granted('ROLE_RESP')%}
+      {% elseif is_granted('ROLE_RESP')%}
       <li class="nav-item active">
         <a class="nav-link" href="{{path('index')}}">Accueil <span class="sr-only">(current)</span></a>
       </li>
@@ -66,13 +66,13 @@
         <a class="nav-link" href="{{path('stat')}}">Statistiques</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Produits</a>
+        <a class="nav-link" href="{{path('produit')}}">Produits</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Employee</a>
+        <a class="nav-link" href="{{path('employee')}}">Employee</a>
       </li>
-      <li>
-      	<a  href="{{path('app_logout')}}">Déconnecter</a>
+      <li class="nav-item">
+      	<a class="nav-link"  href="{{path('app_logout')}}">Déconnecter</a>
       </li>
 
       {% endif %}

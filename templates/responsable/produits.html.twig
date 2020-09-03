@@ -1,0 +1,24 @@
+{% extends "base.html.twig"%}
+{% block stylesheets %}
+
+{% endblock %}
+{% block body%}
+<table class="table">
+  <thead>
+    <th>nom</th>
+    <th>description</th>
+    <th>quantite</th>
+    <th>type</th>
+  </thead>
+    <tbody>
+  {% for produit in produits %}
+    <tr>
+      <td>{{produit.nom}}</td>
+      <td>{{produit.description}}</td>
+      <td>{{produit.quantite}}</td>
+      <td>{{produit.type}}</td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

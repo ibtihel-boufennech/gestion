@@ -38,5 +38,5 @@ security:
         - { path: ^/login, roles: [IS_ANONYMOUS]}
         - { path: ^/signup, roles: [IS_ANONYMOUS]}
         - { path: ^/, roles: [IS_AUTHENTICATED_FULLY]}
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin, roles: ROLE_TECH }
         # - { path: ^/profile, roles: ROLE_USER }

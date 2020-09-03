@@ -23,6 +23,7 @@ class DashboardController extends AbstractDashboardController
     public function index(): Response
     {
         /*return parent::index();*/
+         $this->denyAccessUnlessGranted('ROLE_TECH');
         $routeBuilder = $this->get(CrudUrlGenerator::class)->build();
         return $this->redirect($routeBuilder->setController(ProduitCrudController::class)->generateUrl());
     }
