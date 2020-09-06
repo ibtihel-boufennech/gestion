@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\ProduitRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
@@ -19,6 +20,10 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Type(
+     * type = "alpha",
+     * message = "le nom doit etre une chaine des characteres"
+     *)
      */
     private $nom;
 
@@ -29,12 +34,16 @@ class Produit
 
     /**
      * @ORM\Column(type="integer")
+     *@Assert\PositiveOrZero(
+        message = "la quantite doit etre positive ou 0"
+     )
      */
     private $quantite;
 
     /**
      * @ORM\ManyToOne(targetEntity=Types::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $type;
 

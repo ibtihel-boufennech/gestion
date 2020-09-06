@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\EmployeeRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=EmployeeRepository::class)
@@ -19,21 +20,41 @@ class Employee
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
+     * @Assert\Type(
+     *   type = "alpha",
+     *  message = "le nom doit etre une chaine des characteres"
+     *)
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(
+        message = "le nom ne peut pas etre vide" 
+     )
+      * @Assert\Type(
+     *   type = "alpha",
+     *  message = "le prenom doit etre une chaine des characteres"
+     *)
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=100)
+      * @Assert\Type(
+     *   type = "alpha",
+     *  message = "le poste doit etre une chaine des characteres"
+     *)
      */
     private $post;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+      * @Assert\Type(
+     *   type = {"alpha","digit"},
+     *  message = "l'adresse doit etre une chaine des characteres"
+     *)
      */
     private $adresse;
 
@@ -44,11 +65,25 @@ class Employee
 
     /**
      * @ORM\Column(type="bigint", nullable=true)
+      * @Assert\Type(
+     *   type = "digit",
+     *  message = "le telephone doit etre un numero"
+     *)
+     * @Assert\Length(
+     *      min = 8,
+     *      max = 8,
+     *     exactMessage =  "La longueur de numero de telephone doit etre 8",
+     *      allowEmptyString = false
+     * )
      */
     private $telephone;
 
     /**
      * @ORM\Column(type="bigint")
+     * 
+     * @Assert\Positive(
+        message = "le salaire doit etre positif"
+     )
      */
     private $salaire;
 

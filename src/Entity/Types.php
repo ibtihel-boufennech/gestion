@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\TypesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=TypesRepository::class)
@@ -19,6 +20,11 @@ class Types
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank
+     * @Assert\Type(
+     *   type = "alpha",
+     *  message = "le nom doit etre une chaine des characteres"
+     *)
      */
     private $nom;
 
@@ -30,6 +36,7 @@ class Types
     /**
      * @ORM\ManyToOne(targetEntity=SousCategorie::class)
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
      */
     private $sous_categorie;
 

@@ -25,7 +25,7 @@ class SousCategorieCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('nom'),
-            TextEditorField::new('description'),
+            TextField::new('description'),
             AssociationField::new('categorie'),
         ];
     }

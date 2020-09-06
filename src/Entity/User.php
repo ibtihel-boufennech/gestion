@@ -5,7 +5,8 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
  */
@@ -36,26 +37,40 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
+     * @Assert\Type("string")
      */
     private $prenom;
 
     /**
      * @ORM\Column(type="string", length=100)
+    
      */
     private $email;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type("string")
+
      */
     private $adresse;
 
     /**
      * @ORM\Column(type="bigint", nullable=true)
+     @Assert\Length(
+     *      min = 8,
+     *      max = 8,
+     *      minMessage = "La longueur de numero de telephone doit etre 8",
+     *      maxMessage = "La longueur de numero de telephone doit etre 8",
+     *      allowEmptyString = false
+     * )
      */
     private $telephone;
 
