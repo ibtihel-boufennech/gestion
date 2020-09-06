@@ -9,6 +9,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ * fields = "email",
+ * message = "mot de passe deja utilisé"
+ *)
+ * @UniqueEntity(
+ * fields = "username",
+ * message = "username deja utilisé"
+ )
  */
 class User implements UserInterface
 {
@@ -21,6 +29,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     
      */
     private $username;
 
@@ -32,20 +41,31 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     @Assert\Length(
+     *      min = 6,
+     *      minMessage =  "La longueur de mot de passe  doit etre au moin 6 caracteres",
+     *      allowEmptyString = false
+     * )
      */
     private $password;
 
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank
-     * @Assert\Type("string")
+     * @Assert\Type(
+     * type = "alpha",
+     * message = "le nom doit etre une chaine des caracteres"
+     *)
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=100)
      * @Assert\NotBlank
-     * @Assert\Type("string")
+     * @Assert\Type(
+     * type = "alpha",
+     * message = "le prenom doit etre une chaine des caracteres"
+     *)
      */
     private $prenom;
 
@@ -64,11 +84,10 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="bigint", nullable=true)
-     @Assert\Length(
+     * @Assert\Length(
      *      min = 8,
      *      max = 8,
-     *      minMessage = "La longueur de numero de telephone doit etre 8",
-     *      maxMessage = "La longueur de numero de telephone doit etre 8",
+     *      exactMessage =  "La longueur de numero de telephone doit etre 8",
      *      allowEmptyString = false
      * )
      */

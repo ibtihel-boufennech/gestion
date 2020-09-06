@@ -1,0 +1,44 @@
+<h1 align="center"> statistique de produit pour la date {{datestat|date("Y-m-d")}}</h1>
+<h3>produits epuisés</h3>
+
+<table   border = 1>
+	<tr>
+		<td>produit</td>
+		<td>quantité</td>
+	</tr>
+	{%for produit in produits_epuise%}
+	<tr>
+		<td>{{produit.nom}}</td>
+		<td>{{produit.quantite}}</td>
+	</tr>
+	{% endfor %}
+</table>
+<h3>produits pres fin</h3>
+<table  border = 1>
+	
+		<tr>
+		<td>produit</td>
+		<td>quantité</td>
+	</tr>
+
+	{% for produit in produitspresfin %}
+	<tr>
+		<td>{{produit.nom}}</td>
+		<td>{{produit.quantite}}</td>
+	</tr>
+	{% endfor %}
+</table>
+
+<h3>produits suffisant</h3>
+<table  border = 1>
+	<tr>
+		<td>produit</td>
+		<td>quantité</td>
+	</tr>
+	{%for produit in produits_suffisant %}
+	<tr>
+		<td>{{produit.nom}}</td>
+		<td>{{produit.quantite}}</td>
+	</tr>
+	{% endfor %}
+</table>

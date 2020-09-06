@@ -11,7 +11,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use App\Entity\User;
 use App\Form\UserType;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
-
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 class SecurityController extends AbstractController
 {
   public function __construct(UserPasswordEncoderInterface $passwordEncoder)
@@ -64,12 +64,20 @@ class SecurityController extends AbstractController
     /**
      * @Route("/signup", name="register")
      */
-    public function signup(Request $request)
+    public function signup(Request $request, ValidatorInterface $validator)
     {
         $user = new User();
+
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
         if($form->isSubmitted()&&$form->isValid()){
+            $errors = $validator->validate($user);
+            if($errors){
+                return $this->render("security/signup.html.twig",[
+                    "form"=>$form->createView(),
+                    "errors"=> $errors,
+                ]);
+            }else{
             $entitymanager=$this->getDoctrine()->getManager();
             $user->setPassword($this->passwordEncoder->encodePassword(
                  $user,
@@ -80,7 +88,7 @@ class SecurityController extends AbstractController
             return $this->render("index.html.twig",["sucess"=>"utilisateur enregisté avec succes"]);
 
 
-        }
+        }}
         return $this->render("security/signup.html.twig",["form"=>$form->createView()]);
     }
     /**

@@ -2,17 +2,22 @@
 
 {% block stylesheets %}
   .epuise{
-    background-color:#ff0000;
+    background-color:#3456E2;
   }
   .presfin{
 
-    background-color:#ffa500;
+    background-color:red;
   }
   .suffisant{
-    background-color:#90ee90 ;
+    background-color:#ffa500 ;
   }
   .link{
     font-size:14px
+  }
+  #title{
+    color : green;
+    margin-top : 3%;
+    margin- bottom : 5%;
   }
 {% endblock %}
 
@@ -23,13 +28,22 @@
 </style>
 
 <div class="example-wrapper">
+  <h2 id = "title">Tri des Produits par Quantité</h2>
   <table class="table">
 
     <thead>
-      <th class="epuise">Produits épuisés</th>
-      <th class="presfin">Produits prés Fin</th>
-      <th class="suffisant">Produits avec quantité suffisantes</th>
+      <th class="epuise" colspan = 2>Produits épuisés</th>
+      <th class="presfin"colspan = 2>Produits prés Fin</th>
+      <th class="suffisant"colspan = 2>Produits avec quantité suffisantes</th>
     </thead>
+    <tr>
+      <td class="epuise">Produit</td>
+      <td class="epuise">Quantite</td>
+      <td class = "presfin"align=center>Produit</td>
+      <td class = "presfin"align=center>Quantite</td>
+      <td class = "suffisant"align=center>Produit</td>
+      <td class = "suffisant"align=center>Quantite</td>
+    </tr>
     {% for i in length     %}
 
 
@@ -38,24 +52,55 @@
 
             {% if produits_epuise[(loop.index)-1] is defined%}
 
-              {{produits_epuise[(loop.index)-1].nom }}  |  {{ produits_epuise[(loop.index)-1].quantite}}
+              {{produits_epuise[(loop.index)-1].nom }} 
+
+            {% endif %}
+          </td>
+          <td class="epuise" align=center>
+
+            {% if produits_epuise[(loop.index)-1] is defined%}
+
+                {{ produits_epuise[(loop.index)-1].quantite}}
 
             {% endif %}
           </td>
           <td class="presfin" align=center>
             {% if produits_pres_fin[(loop.index-1)] is defined%}
-              {{produits_pres_fin[(loop.index-1)].nom}}  |  {{ produits_pres_fin[(loop.index-1)].quantite }}
+              {{produits_pres_fin[(loop.index-1)].nom}}  
+            {% endif %}
+          </td>
+          <td class="presfin" align=center>
+          {% if produits_pres_fin[(loop.index-1)] is defined%}
+               {{ produits_pres_fin[(loop.index-1)].quantite }}
+          {% else%}
+              &nbsp;&nbsp;
+            {% endif %}
+          
+          </td>
+          <td class="suffisant" align=center>
+            {% if produits_suffisant[(loop.index-1)] is defined%}
+              {{produits_suffisant[(loop.index-1)].nom }} 
             {% endif %}
           </td>
           <td class="suffisant" align=center>
             {% if produits_suffisant[(loop.index-1)] is defined%}
-              {{produits_suffisant[(loop.index-1)].nom }} |  {{ produits_suffisant[(loop.index-1)].quantite }}
+                {{ produits_suffisant[(loop.index-1)].quantite }}
             {% endif %}
           </td>
         </tr>
     {% endfor %}
   </table>
-  <a href="#" class=link>Ajouter au Rapport</a>|
-  <a href="#"class=link>Finaliser le Rapport</a>
 </div>
+  <div id="div_chart"></div>
+    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        {{ gc_draw(piechart, 'div_chart') }}
+    </script>
+  {%if is_granted('ROLE_TECH')%}
+  <a href="{{path('stat_new')}}" class=link>Enregistrer Statistique</a>|
+  {% endif %}
+  <a href="{{path('print_stat')}}"class=link>Exporter Statistique</a>
+
+
 {% endblock %}

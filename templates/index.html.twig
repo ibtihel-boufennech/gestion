@@ -8,7 +8,7 @@
 {% endblock %}
 {% block body%}
 
-{% if isset(succes)%}
+{% if success is defined%}
 <div class="alert alert-success"> {{success}}</div>
 {% endif %}
 
