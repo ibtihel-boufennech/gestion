@@ -1,7 +1,7 @@
 <?php
 namespace App\Message;
 
-class SmsNotification
+class Notification
 {
     private $content;
 
