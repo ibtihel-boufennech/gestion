@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\MessageHandler;
 
 use App\Message\Notification;
@@ -8,6 +8,6 @@ class NotificationHandler implements MessageHandlerInterface
 {
     public function __invoke(Notification $message)
     {
-        // ... do some work - like sending an SMS message!
+        
     }
 }

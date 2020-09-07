@@ -35,8 +35,8 @@ class Produit
     /**
      * @ORM\Column(type="integer")
      *@Assert\PositiveOrZero(
-        message = "la quantite doit etre positive ou 0"
-     )
+      *  message = "la quantite doit etre positive ou 0"
+     *)
      */
     private $quantite;
 
