@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "e6db6c0cf855ce61b1f9c5e0afcbd08a",
@@ -2506,23 +2506,23 @@
         },
         {
             "name": "spipu/html2pdf",
-            "version": "v5.2.2",
+            "version": "v5.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spipu/html2pdf.git",
-                "reference": "e6d8ca22347b6691bb8c2652212b1be2c89b3eff"
+                "reference": "dcb5671cac3d60ff486cf16df389e3bd0dc16ba4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spipu/html2pdf/zipball/e6d8ca22347b6691bb8c2652212b1be2c89b3eff",
-                "reference": "e6d8ca22347b6691bb8c2652212b1be2c89b3eff",
+                "url": "https://api.github.com/repos/spipu/html2pdf/zipball/dcb5671cac3d60ff486cf16df389e3bd0dc16ba4",
+                "reference": "dcb5671cac3d60ff486cf16df389e3bd0dc16ba4",
                 "shasum": ""
             },
             "require": {
                 "ext-gd": "*",
                 "ext-mbstring": "*",
-                "php": "^5.6 || ^7.0",
-                "tecnickcom/tcpdf": "^6.2"
+                "php": "^5.6 || ^7.0 || ^8.0",
+                "tecnickcom/tcpdf": "^6.3"
             },
             "require-dev": {
                 "phake/phake": "^2.0",
@@ -2556,7 +2556,11 @@
                 "html2pdf",
                 "pdf"
             ],
-            "time": "2020-03-22T16:23:26+00:00"
+            "support": {
+                "issues": "https://github.com/spipu/html2pdf/issues",
+                "source": "https://github.com/spipu/html2pdf/tree/v5.2.4"
+            },
+            "time": "2021-12-16T15:23:31+00:00"
         },
         {
             "name": "symfony/amqp-messenger",
@@ -7114,16 +7118,16 @@
         },
         {
             "name": "tecnickcom/tcpdf",
-            "version": "6.3.5",
+            "version": "6.4.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tecnickcom/TCPDF.git",
-                "reference": "19a535eaa7fb1c1cac499109deeb1a7a201b4549"
+                "reference": "42cd0f9786af7e5db4fcedaa66f717b0d0032320"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/19a535eaa7fb1c1cac499109deeb1a7a201b4549",
-                "reference": "19a535eaa7fb1c1cac499109deeb1a7a201b4549",
+                "url": "https://api.github.com/repos/tecnickcom/TCPDF/zipball/42cd0f9786af7e5db4fcedaa66f717b0d0032320",
+                "reference": "42cd0f9786af7e5db4fcedaa66f717b0d0032320",
                 "shasum": ""
             },
             "require": {
@@ -7172,7 +7176,17 @@
                 "pdf417",
                 "qrcode"
             ],
-            "time": "2020-02-14T14:20:12+00:00"
+            "support": {
+                "issues": "https://github.com/tecnickcom/TCPDF/issues",
+                "source": "https://github.com/tecnickcom/TCPDF/tree/6.4.4"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_donations&currency_code=GBP&business=paypal@tecnick.com&item_name=donation%20for%20tcpdf%20project",
+                    "type": "custom"
+                }
+            ],
+            "time": "2021-12-31T08:39:24+00:00"
         },
         {
             "name": "twig/extra-bundle",
@@ -7825,57 +7839,6 @@
             ],
             "description": "A pack for functional and end-to-end testing within a Symfony app",
             "time": "2019-06-21T06:27:32+00:00"
-        },
-        {
-            "name": "wemersonjanuario/wkhtmltopdf-windows",
-            "version": "0.12.2.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/wemersonjanuario/wkhtmltopdf-windows.git",
-                "reference": "90fcd3487cad5931287742113c449b926e9e48d8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/wemersonjanuario/wkhtmltopdf-windows/zipball/90fcd3487cad5931287742113c449b926e9e48d8",
-                "reference": "90fcd3487cad5931287742113c449b926e9e48d8",
-                "shasum": ""
-            },
-            "suggest": {
-                "h4cc/wkhtmltopdf-amd64": "*",
-                "h4cc/wkhtmltopdf-i386": "*",
-                "wemersonjanuario/laravelpdf": "1.0.*"
-            },
-            "bin": [
-                "bin/32bit/wkhtmltopdf.exe",
-                "bin/32bit/wkhtmltoimage.exe",
-                "bin/64bit/wkhtmltopdf.exe",
-                "bin/64bit/wkhtmltoimage.exe"
-            ],
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "LGPL Version 3"
-            ],
-            "authors": [
-                {
-                    "name": "Wemerson Januario",
-                    "email": "wemerson.januario@gmail.com",
-                    "homepage": "http://wemersonjanuario.com.br"
-                }
-            ],
-            "description": "Convert html to pdf using webkit (qtwebkit). Static linked windows binary for 32 bit and 64 bit systems.",
-            "homepage": "http://wkhtmltopdf.org/",
-            "keywords": [
-                "binary",
-                "convert",
-                "htmltoimage",
-                "htmltopdf",
-                "pdf",
-                "snapshot",
-                "thumbnail",
-                "wkhtmltopdf"
-            ],
-            "time": "2015-06-30T20:19:22+00:00"
         }
     ],
     "aliases": [],
@@ -7888,5 +7851,6 @@
         "ext-ctype": "*",
         "ext-iconv": "*"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "2.2.0"
 }
